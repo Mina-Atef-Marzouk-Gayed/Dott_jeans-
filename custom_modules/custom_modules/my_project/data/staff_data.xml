@@ -1,0 +1,45 @@
+<odoo noupdate="1">
+
+  <!-- Branches -->
+  <record id="branch_cairo" model="my.project.branch">
+    <field name="name">Cairo Branch</field>
+  </record>
+
+  <record id="branch_giza" model="my.project.branch">
+    <field name="name">Giza Branch</field>
+  </record>
+
+  <record id="branch_alex" model="my.project.branch">
+    <field name="name">Alex Branch</field>
+  </record>
+
+  <!-- Staff -->
+  <record id="staff_1" model="my.project.staff">
+    <field name="name">Mina Adel</field>
+    <field name="phone">0100000001</field>
+    <field name="job_role">manager</field>
+    <field name="branch_id" ref="branch_cairo"/>
+  </record>
+
+  <record id="staff_2" model="my.project.staff">
+    <field name="name">Rokia Abdallah</field>
+    <field name="phone">0100000002</field>
+    <field name="job_role">hr</field>
+    <field name="branch_id" ref="branch_giza"/>
+  </record>
+
+  <record id="staff_3" model="my.project.staff">
+    <field name="name">Alsaeed Aziz</field>
+    <field name="phone">0100000003</field>
+    <field name="job_role">cashier</field>
+    <field name="branch_id" ref="branch_alex"/>
+  </record>
+
+  <record id="staff_4" model="my.project.staff">
+    <field name="name">Staff Member 4</field>
+    <field name="phone">0100000004</field>
+    <field name="job_role">accountant</field>
+    <field name="branch_id" ref="branch_cairo"/>
+  </record>
+
+</odoo>

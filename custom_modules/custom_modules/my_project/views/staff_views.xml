@@ -1,0 +1,118 @@
+<odoo>
+
+  <!-- ACTION -->
+  <record id="action_my_project_staff" model="ir.actions.act_window">
+    <field name="name">Staff Members</field>
+    <field name="res_model">my.project.staff</field>
+    <field name="view_mode">kanban,list,form</field>
+  </record>
+
+  <!-- MENUS -->
+  <menuitem id="menu_my_project_root" name="My Project"/>
+  <menuitem id="menu_my_project_staff" name="Staff"
+            parent="menu_my_project_root"
+            action="action_my_project_staff"/>
+
+  <!-- LIST VIEW -->
+  <record id="view_my_project_staff_list" model="ir.ui.view">
+    <field name="name">my.project.staff.list</field>
+    <field name="model">my.project.staff</field>
+    <field name="arch" type="xml">
+      <list>
+        <field name="name"/>
+        <field name="phone"/>
+        <field name="job_role"/>
+        <field name="branch_id"/>
+      </list>
+    </field>
+  </record>
+
+  <!-- FORM VIEW -->
+  <record id="view_my_project_staff_form" model="ir.ui.view">
+    <field name="name">my.project.staff.form</field>
+    <field name="model">my.project.staff</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <group string="Personal Info">
+              <field name="name" class="oe_title"/>
+              <field name="phone"/>
+              <field name="branch_id"/>
+            </group>
+
+            <group string="Work">
+              <field name="job_role"/>
+            </group>
+          </group>
+
+          <group string="Photo">
+            <field name="image_1920" widget="image"/>
+          </group>
+
+          <group string="Notes">
+            <field name="notes"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- SEARCH VIEW -->
+  <record id="view_my_project_staff_search" model="ir.ui.view">
+    <field name="name">my.project.staff.search</field>
+    <field name="model">my.project.staff</field>
+    <field name="arch" type="xml">
+      <search string="Staff Search">
+        <field name="name"/>
+        <field name="phone"/>
+        <field name="job_role"/>
+        <field name="branch_id"/>
+
+        <separator/>
+
+        <filter string="Role: Manager" name="f_manager" domain="[('job_role','=','manager')]"/>
+        <filter string="Role: Cashier" name="f_cashier" domain="[('job_role','=','cashier')]"/>
+        <filter string="Role: HR" name="f_hr" domain="[('job_role','=','hr')]"/>
+
+        <separator/>
+
+        <filter string="Group by Role" name="g_role" context="{'group_by':'job_role'}"/>
+        <filter string="Group by Branch" name="g_branch" context="{'group_by':'branch_id'}"/>
+      </search>
+    </field>
+  </record>
+
+  <!-- KANBAN VIEW -->
+  <record id="view_my_project_staff_kanban" model="ir.ui.view">
+    <field name="name">my.project.staff.kanban</field>
+    <field name="model">my.project.staff</field>
+    <field name="arch" type="xml">
+      <kanban default_group_by="job_role">
+        <field name="name"/>
+        <field name="image_1920"/>
+        <field name="phone"/>
+        <field name="job_role"/>
+        <field name="branch_id"/>
+
+        <templates>
+          <t t-name="card">
+            <div class="oe_kanban_global_click o_kanban_record">
+              <div>
+                <field name="image_1920" widget="image" class="oe_avatar"/>
+              </div>
+              <div>
+                <strong><field name="name"/></strong>
+                <div>Role: <field name="job_role"/></div>
+                <div>Phone: <field name="phone"/></div>
+                <div>Branch: <field name="branch_id"/></div>
+              </div>
+            </div>
+          </t>
+        </templates>
+
+      </kanban>
+    </field>
+  </record>
+
+</odoo>
